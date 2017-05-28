@@ -1,0 +1,50 @@
+#search-output {
+  text-align: left;
+  margin-top: 25px;
+
+  a {
+    display: block;
+  }
+
+  ul {
+    padding: 0;
+    margin: 0;
+    width: 100%;
+  }
+
+  li {
+    border-left: 5px solid $divider-color;
+    border-radius: 2px;
+    list-style-type: none;
+    background-color: $primary-color;
+    padding: 20px 10px;
+    margin-bottom: 20px;
+    transition: all .4s;
+
+    &:hover {
+      border-left: 5px solid $accent-color;
+      transition: all .4s;
+    }
+
+    img {
+      width: 200px;
+      height: 150px;
+    }
+
+    h2 {
+      margin-top: 0;
+      font-size: 28px;
+    }
+
+    p {
+      font-size: 14px;
+      width: 100%;
+    }
+
+    .output-text {
+      padding: 0 20px;
+    }
+
+  }
+
+}

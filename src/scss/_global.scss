@@ -1,0 +1,64 @@
+* {
+  box-sizing: border-box;
+}
+
+body {
+  background: $dark-primary-color;
+  color: $texticon-color;
+  font-size: 16px;
+}
+
+html,
+button,
+input,
+select,
+textarea,
+.pure-g [class *="pure-u"] {
+  font-family: $font-stack;
+}
+
+.full-wrapper {
+  text-align: center;
+  max-width: 600px;
+  margin: 0 auto;
+}
+
+h1 {
+  margin-bottom: 0;
+}
+
+.clearfix::after {
+  visibility: hidden;
+  display: block;
+  font-size: 0;
+  content: " ";
+  clear: both;
+  height: 0;
+
+}
+
+.modal {
+  display:    none;
+  position:   relative;
+  z-index:    1000;
+  top:        0;
+  left:       0;
+  height:     0;
+  width:      100%;
+  background: rgba( 48, 63, 159, 1 )
+              url('./images/pacman-loader.gif')
+              50% 50%
+              no-repeat;
+}
+
+/* When the body has the loading class, we turn
+   the scrollbar off with overflow:hidden */
+#loading-animation.loading {
+  overflow: hidden;
+}
+
+/* Anytime the body has the loading class, our
+   modal element will be visible */
+#loading-animation.loading .modal {
+  display: block;
+}
