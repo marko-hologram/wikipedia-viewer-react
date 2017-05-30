@@ -1,6 +1,5 @@
 #search-output {
   text-align: left;
-  margin-top: 25px;
 
   a {
     display: block;
@@ -21,9 +20,15 @@
     margin-bottom: 20px;
     transition: all .4s;
 
+
     &:hover {
       border-left: 5px solid $accent-color;
       transition: all .4s;
+      transform: scale(1.1, 1.1);
+    }
+
+    a {
+      color: $texticon-color;
     }
 
     img {

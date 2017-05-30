@@ -13,7 +13,7 @@ var wikiHeaders = {
   format: "json",
   origin: "*",
   prop: "info|extracts",
-  exsentences: 2,
+  exsentences: 1,
   exlimit: 5,
   generator: "search",
   inprop: "url",
@@ -55,7 +55,7 @@ class App extends React.Component {
 
     fetch(wikiAPI + toQueryString(wikiHeaders)).then(function(response) {
       return response.json();
-    }).then(function(json) {
+    }).then((json) => {
       for (var prop in json.query.pages) {
 
         // push response items to array so that state isn't directly changed (not changing state recommended by Facebook)
@@ -64,17 +64,17 @@ class App extends React.Component {
           url: json.query.pages[prop].fullurl,
           extract: json.query.pages[prop].extract
         });
+
+        this.setState({results: resultsArray}); // set state.results to resultsArray
       }
     }).catch(function(ex) {
-      console.log('Json parsing failed', ex); // show error if fetch fails
+      console.log('Json parsing failed', ex); // show error if JSON parsing fails
     });
 
-    this.setState({results: resultsArray}); // set state.results to resultsArray
   }
 
   handleChange(e) {
     wikiHeaders.gsrsearch = e.target.value; // get input value and store it
-    console.log(wikiHeaders.gsrsearch); //see if search term updates
   }
 
   handleSubmit(e) {

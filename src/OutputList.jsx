@@ -15,13 +15,9 @@ class OutputList extends React.Component {
       );
     });
 
-    console.log(finalResult);
-    console.log(this.props.results);
-
     return (
       <div id="search-output" className="pure-g">
         <ul className="article-list pure-u-1">
-          <h1>WHAT WHAT</h1>
           {finalResult}
         </ul>
       </div>

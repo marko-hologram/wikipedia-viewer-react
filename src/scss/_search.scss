@@ -1,5 +1,5 @@
 .search-input {
-  margin: 2em auto;
+  margin: 2em auto 0 auto;
   padding: 2em 0;
 
   a {
@@ -28,6 +28,10 @@
     border-radius: 5px;
     margin-right: 5px;
   }
+}
+
+#search-button {
+  padding: .55em 1em;
 }
 
 @media screen and (max-width: 767px) {
