@@ -1,12 +1,14 @@
 import React from 'react';
 import WikiHeader from './Header';
 import WikiSearch from './Search';
+import ErrorOutput from './Error';
 import OutputList from './OutputList';
 import 'purecss';
 import 'purecss/build/grids-responsive-min.css'
 import './App.css';
 
 var resultsArray = [];
+var errorText = "";
 const wikiAPI = "https://en.wikipedia.org/w/api.php?&";
 var wikiHeaders = {
   action: "query",
@@ -40,7 +42,8 @@ class App extends React.Component {
     super();
 
     this.state = {
-      results: []
+      results: [],
+      fetchError: false // to keep track if fetch is erroring or successing
     }
 
     this.ajaxCall = this.ajaxCall.bind(this);
@@ -65,10 +68,17 @@ class App extends React.Component {
           extract: json.query.pages[prop].extract
         });
 
-        this.setState({results: resultsArray}); // set state.results to resultsArray
+        this.setState({
+          results: resultsArray,
+          fetchError: false
+        }); // set state.results to resultsArray
       }
-    }).catch(function(ex) {
-      console.log('Json parsing failed', ex); // show error if JSON parsing fails
+    }).catch((ex) => {
+      console.log('Fetch request failed. Maybe parsing the JSON data failed or the search term didn\'t return any results.', ex); // log error if fetch fails
+      // define error text
+      errorText = 'Request failed or your search term "' + wikiHeaders.gsrsearch + '" doesn\'t return any results. Please try searching again.';
+      this.setState({fetchError: true});
+
     });
 
   }
@@ -88,14 +98,18 @@ class App extends React.Component {
     document.getElementById("search-input").value = "";
   }
 
-
   render() {
     return (
       <div className="full-wrapper pure-g">
         <div className="pure-u-1">
           <WikiHeader />
           <WikiSearch onChange={this.handleChange} onSubmit={this.handleSubmit} />
-          <OutputList results={this.state.results} />
+          { errorText !== "" && this.state.fetchError ? (
+            <ErrorOutput errorText={errorText} />
+            ) : (
+            <OutputList results={this.state.results} />
+            )
+          }
         </div>
       </div>
     );
